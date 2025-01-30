@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Forever Valentine ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffb3b3);
+            font-family: 'Arial Rounded MT Bold', sans-serif;
+            overflow: hidden;
+        }
+
+        .card-container {
+            position: relative;
+            width: 400px;
+            height: 500px;
+        }
+
+        .card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: all 0.8s;
+            cursor: pointer;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:not(:first-child) {
+            transform: rotate(5deg) translateX(10px);
+        }
+
+        .card.active {
+            transform: rotate(0deg) translateX(0);
+            z-index: 1;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .final-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .music-player {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .music-player:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .dates {
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+            font-size: 2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <!-- Add 9 image cards here -->
+        <div class="card active"><img src="1.jpg" alt="Our Memory"></div>
+        <div class="card"><img src="2.jpg" alt="Our Memory"></div>
+        <div class="card"><img src="3.jpg" alt="Our Memory"></div>
+        <div class="card"><img src="4.jpg" alt="Our Memory"></div>
+        <div class="card"><img src="5.jpg" alt="Our Memory"></div>
+        <div class="card"><img src="6.jpg" alt="Our Memory"></div>
+        <div class="card"><img src="8.jpg" alt="Our Memory"></div>
+        <div class="card"><img src="9.jpg" alt="Our Memory"></div>
+        <div class="card final-card">
+            <h1>Happy Valentine's Day! ❤️</h1>
+            <p>Every moment with you is special. Thank you for being my sunshine, my confidant, and my forever love.</p>
+            <div class="dates">
+                <p>First Met: 11/11/2024</p>
+                <p>First Anniversary: 01/04/2024</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="music-player">
+        <audio id="myAudio" loop>
+            <source src="music.mp3" type="audio/mpeg">
+        </audio>
+        <span style="color: white;">🎵</span>
+    </div>
+
+    <script>
+        const cards = document.querySelectorAll('.card');
+        let currentCard = 0;
+
+        cards.forEach((card, index) => {
+            card.addEventListener('click', () => {
+                if (index !== currentCard) return;
+                
+                card.style.transform = 'translateX(-200%) rotate(-30deg)';
+                card.style.opacity = '0';
+                currentCard++;
+                
+                if (currentCard < cards.length) {
+                    cards[currentCard].classList.add('active');
+                }
+            });
+        });
+
+        // Music player controls
+        const audio = document.getElementById('myAudio');
+        const musicPlayer = document.querySelector('.music-player');
+
+        musicPlayer.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                musicPlayer.innerHTML = '🎵';
+            } else {
+                audio.pause();
+                musicPlayer.innerHTML = '🎶';
+            }
+        });
+    </script>
+</body>
+</html>
